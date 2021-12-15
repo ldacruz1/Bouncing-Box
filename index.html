@@ -1,0 +1,56 @@
+<html style='background-color: black'>
+  <div id="my_bouncing_box" style= "background-color: blue; border-radius: 3px; position: absolute; left: 0px; top: 0px; min-width: 100px; min-height: 100px; text-align: center; font-weight: bold; color: #999;" >Lucas</div>
+  <script type="text/javascript">
+    var SPEED = 5;
+    var box;
+    window.onload = init;
+    function init(){
+        box = document.getElementById('my_bouncing_box');
+
+        box.move = true;
+        box.posX = box.offsetLeft;
+        box.posY = box.offsetTop;
+        box.velX = SPEED;
+        box.velY = SPEED;
+
+        MAX_BOX_X = window.innerWidth;
+        // console.log("Max X is " + MAX_BOX_X);
+        MAX_BOX_Y = window.innerHeight;
+        // console.log("Max Y is " + MAX_BOX_Y);
+        setInterval(moveBox,33);
+    }
+    
+    function moveBox() {
+    
+        // position increase based on the speed
+        if (box.move) {
+            box.posX += box.velX; //style.left
+            box.posY += box.velY; 
+            
+
+            // once it reaches the left corner changens direction
+            if( box.posX <= 0 ) {
+                box.posX = 0;
+                box.velX = -box.velX;
+            }
+            // once it reaches the right corner it changes direction
+            if( box.posX >= MAX_BOX_X ) {
+                box.posX = MAX_BOX_X;
+                box.velX = -box.velX;
+            }
+            // once it changes the top it changes direction
+            if( box.posY <= 0 ) {
+                box.posY = 0;
+                box.velY = -box.velY;
+            }
+            // once it hits the bottom it changes direction
+            if( box.posY >= MAX_BOX_Y ) {
+                box.posY = MAX_BOX_Y;
+                box.velY = -box.velY;
+            }
+            box.style.left = box.posX + "px";
+            box.style.top  = box.posY + "px";
+        }
+    } 
+  </script>
+</html>
